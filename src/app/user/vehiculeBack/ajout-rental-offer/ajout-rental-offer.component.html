@@ -18,13 +18,11 @@
                         <div class="row justify-space-between text-center py-2">
 
 
-
-
                             <div class="input-group input-group-outline mb-3">
                                 <label class="form-label" style="color: black;">Agence</label>
-                                <select id="agence" class="form-select" name="agence" [(ngModel)]="nomAgence" (change)="onChangeAgence()">
+                                <select id="agence" class="form-select" name="agence" [(ngModel)]="nomAgence" required>
                                     <option value="">Sélectionnez une agence</option>
-                                    <option *ngFor="let agence of listagence" [value]="agence.agenceId">{{ agence.nom }}</option>
+                                    <option *ngFor="let agence of listagence" [value]="agence.nom">{{ agence.nom }}</option>
                                 </select>
                             </div>
 

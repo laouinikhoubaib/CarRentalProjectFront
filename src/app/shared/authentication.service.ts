@@ -57,12 +57,7 @@ export class AuthenticationService {
     formData.append('agence', nom);
     return this.http.post(API_URL + 'sign-up', formData);
   }
-  register3(user: string, file: File): Observable<any> { //
-    const formData: FormData = new FormData();
-    formData.append('user', user);
-    formData.append('file', file);
-    return this.http.post(API_URL + 'sign-upp', formData);
-  }
+
   logOut(){
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(new User);

@@ -6,6 +6,7 @@ import {Role} from '../../models/role.enum';
 import {AppComponent} from '../../app.component';
 import {Agence} from '../../models/agence';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AgenceService} from '../../shared/agence.service';
 
 
 
@@ -25,6 +26,7 @@ export class RegisterComponent2 implements OnInit, OnDestroy {
   step: number = 1;
   userParsed: string = '';
   nomAgence: string = '';
+  listagence: Agence[];
   selectedFile!: File;
   registerForm: FormGroup;
   submitted = false;
@@ -32,7 +34,7 @@ export class RegisterComponent2 implements OnInit, OnDestroy {
   agence: Agence = new Agence();
   agences: Agence[];
 
-  constructor(public app: AppComponent, private authenticationService: AuthenticationService, private router: Router, private formBuilder: FormBuilder) {
+  constructor(public app: AppComponent, private authenticationService: AuthenticationService, private router: Router, private formBuilder: FormBuilder, private servicea: AgenceService) {
     this.myLinkElement = document.createElement('link');
     this.myLinkElement.href = 'assets/css/material-kit-pro.min3294.css?v=3.0.1';
     this.myLinkElement.rel = 'stylesheet';
@@ -47,7 +49,14 @@ export class RegisterComponent2 implements OnInit, OnDestroy {
     this.authenticationService.getAgences().subscribe(agences => {
       this.agences = agences;
     });
+      this.getAgences();
   }
+    getAgences() {
+        this.servicea.getAgences().subscribe(res => {
+            console.log(res);
+            this.listagence = res;
+        });
+    }
   ngOnDestroy() {
     document.body.removeChild(this.myLinkElement);
   }

@@ -15,6 +15,19 @@
                                             {{errorMessage}}
                                         </div>
                                     </div>
+
+                                    <div class="row justify-space-between text-center py-2">
+                                        <p class="card card-body border-0 shadow-lg rounded-lg bg-transparent animate__animated animate__fadeInRight login-form" style="color: white;">
+                                            Spécifier l'agence
+                                        </p>
+                                    </div>
+                                    <div class="input-group input-group-outline mb-3">
+                                        <label class="form-label" style="color: black;">Agence</label>
+                                        <select id="agence" class="form-select" name="agence" [(ngModel)]="nomAgence" required>
+                                            <option value="">Sélectionnez une agence</option>
+                                            <option *ngFor="let agence of listagence" [value]="agence.nom">{{ agence.nom }}</option>
+                                        </select>
+                                    </div>
                                     <p class="card card-body border-0 shadow-lg rounded-lg bg-transparent animate__animated animate__fadeInRight login-form" style="color: white;">
                                         Veuillez spécifier le role
                                     </p>

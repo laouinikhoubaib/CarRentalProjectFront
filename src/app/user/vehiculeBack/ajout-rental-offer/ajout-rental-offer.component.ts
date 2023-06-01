@@ -48,15 +48,11 @@ export class AjoutVehiculeComponent implements OnInit {
       this.listagence = res;
     });
   }
-
-  onChangeAgence() {
-    console.log(this.nomAgence);
-  }
   addVehicule() {
 
     this.userVehicule = JSON.stringify(this.vehicule);
     console.log(this.userVehicule);
-    this.service.addVehicule(this.userVehicule, this.selectedFile, this.servicea.getAgences()).subscribe(
+    this.service.addVehicule(this.userVehicule, this.selectedFile, this.nomAgence).subscribe(
         response => {
           console.log('Véhicule ajouté avec succès:', response);
         },

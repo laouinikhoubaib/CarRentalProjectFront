@@ -52,8 +52,11 @@
                                     </p>
                                 </div>
                                 <div class="input-group input-group-outline mb-3">
-                                    <label class="form-label" style="color: white;">Agence</label>
-                                    <input type="text" id="agence" class="form-control" name="agence" [(ngModel)]="nomAgence" #agence="ngModel" class="form-control" required>
+                                    <label class="form-label" style="color: black;">Agence</label>
+                                    <select id="agence" class="form-select" name="agence" [(ngModel)]="nomAgence" required>
+                                        <option value="">Sélectionnez une agence</option>
+                                        <option *ngFor="let agence of listagence" [value]="agence.nom">{{ agence.nom }}</option>
+                                    </select>
                                 </div>
 
                                 <div class="row justify-space-between text-center py-2">

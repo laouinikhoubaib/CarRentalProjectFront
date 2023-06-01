@@ -5,6 +5,7 @@ import { catchError, throwError } from 'rxjs';
 import {Vehicule} from '../../../models/vehicule';
 import {VehiculeService} from '../../../shared/vehicule.service';
 import {Agence} from '../../../models/agence';
+import {AgenceService} from '../../../shared/agence.service';
 
 @Component({
   selector: 'app-ajout-rental-offer',
@@ -16,7 +17,7 @@ export class AjoutVehiculeComponent implements OnInit {
   myLinkElement: HTMLLinkElement;
 
   constructor(private service: VehiculeService , private httpClient: HttpClient, private routerNav: Router, private router : Router
-    )  {
+      , private servicea: AgenceService)  {
 
 
     this.myLinkElement = document.createElement('link');
@@ -27,6 +28,7 @@ export class AjoutVehiculeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getAgences();
   }
 
   message: any;
@@ -35,14 +37,26 @@ export class AjoutVehiculeComponent implements OnInit {
   agence: Agence = new Agence();
   agences: Agence[];
   nomAgence: string = '';
+  listagence: Agence[];
   userVehicule: string = '';
   selectedFile!: File;
 
+
+  getAgences() {
+    this.servicea.getAgences().subscribe(res => {
+      console.log(res);
+      this.listagence = res;
+    });
+  }
+
+  onChangeAgence() {
+    console.log(this.nomAgence);
+  }
   addVehicule() {
 
     this.userVehicule = JSON.stringify(this.vehicule);
     console.log(this.userVehicule);
-    this.service.addVehicule(this.userVehicule, this.selectedFile, this.nomAgence).subscribe(
+    this.service.addVehicule(this.userVehicule, this.selectedFile, this.servicea.getAgences()).subscribe(
         response => {
           console.log('Véhicule ajouté avec succès:', response);
         },

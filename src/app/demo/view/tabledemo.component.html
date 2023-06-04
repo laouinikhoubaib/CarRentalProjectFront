@@ -5,7 +5,7 @@
 			<p>Pagination, sorting, filtering and checkbox selection.</p>
 			<p-table #dt [value]="customers1" [(selection)]="selectedCustomers1" dataKey="id"
 					 styleClass="p-datatable-customers" [rowHover]="true" [rows]="10" [paginator]="true"
-					 [filterDelay]="0" [globalFilterFields]="['name','email','phoneNumber','status']">
+					 [filterDelay]="0" [globalFilterFields]="['name','country.name','representative.name','status']">
 				<ng-template pTemplate="caption">
 					<div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
 						Customers

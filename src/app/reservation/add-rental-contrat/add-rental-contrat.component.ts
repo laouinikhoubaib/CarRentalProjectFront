@@ -27,6 +27,7 @@ export class AddReservationComponent implements OnInit {
   datenow = new Date();
   dateValid: boolean = true;
   datedebut!: any;
+  datefi!: any;
   datefin!: any;
   DateValidStartdateAndEnddate: boolean = true;
   DisabledBouton!: boolean;
@@ -49,33 +50,24 @@ export class AddReservationComponent implements OnInit {
     });
   }
 
-  addMonthsToDate(datedebut: Date, monthsToAdd: number): Date {
-    const newDate = new Date(datedebut.getTime());
-    newDate.setMonth(datedebut.getMonth() + monthsToAdd);
-    return newDate;
-  }
 
   ngOnInit(): void {
+
     this.userService.getCurrentUser().subscribe((user: User) => {
       this.currentUser = user;
       this.userId = user.userId;
 
-    this.datefin = this.contract.datedebut.addMonthsToDate(this.nbjour);
-    this.rentalService.getRentalContrat().subscribe(
-      (res) => {
-        this.list = res;
-        console.log(res);
-      });
     });
+    this.rentalService.getRentalContrat().subscribe(
+        (res) => {
+          this.list = res;
+          console.log(res);
+        });
   }
   addRentalContrat() {
-    this.service.getDisponible(this.vehiculeId).subscribe(
-        (res) => {
-          if (res) {
-            // Le véhicule est disponible, procéder à l'ajout de la réservation
             this.rentalService.addReservation(this.contract, this.vehiculeId, this.userId).subscribe(
                 (res) => {
-                  console.log("++++++++++++++", res);
+                  console.log("++++++++++++++",res);
                   this.successNotification();
                 },
                 (error) => {
@@ -83,23 +75,12 @@ export class AddReservationComponent implements OnInit {
                   this.alertError();
                 }
             );
-          } else {
-            // Le véhicule n'est pas disponible, afficher un message d'erreur
-            this.alertError();
-          }
-        },
-        (error) => {
-          console.log("Erreur lors de la vérification de disponibilité:", error);
-          this.alertError();
-        }
-    );
   }
-
-  alertError() {
+  alertError(errorMessage: string = 'Erreur détécté lors de la réservation, veuillez vérifier la disponibilité') {
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
-      text: 'Erreur détécté lors de réservation veuiller vérifier la disponibilité',
+      text: errorMessage,
     });
   }
   successNotification() {
@@ -108,8 +89,8 @@ export class AddReservationComponent implements OnInit {
   validationDate(event: any) {
     var dateAtt = new Date(event.target.value);
     this.datedebut = new Date(event.target.value);
-    var datefin = this.datedebut.addMonthsToDate(this.nbjour);
-    console.log(datefin);
+    var datefi = this.datedebut.addDaysToDate(this.nbjour);
+    console.log(datefi);
     var dateStatique = "2043-06-15";
     console.log(this.datedebut);
     var a = this.datenow.getTime();
@@ -143,24 +124,29 @@ export class AddReservationComponent implements OnInit {
   }
 
 
-dateIsValid():boolean{
-  this.datefin = this.addMonthsToDate(this.datedebut, this.nbjour);
-console.log( '*****' + this.datefin);
-  this.DateValidStartdateAndEnddate = this.rentalService.contratIsValid(this.datedebut, this.datefin)
-  console.log(this.DateValidStartdateAndEnddate)
+  addDaysToDate(date: Date, days: number): Date {
+    const newDate = new Date(date);
+    newDate.setDate(date.getDate() + days);
+    return newDate;
+  }
 
+  dateIsValid():boolean{
+  this.datefin = this.addDaysToDate(this.datedebut, this.nbjour);
+  console.log( '*****' + this.datefin);
+  this.DateValidStartdateAndEnddate = this.rentalService.contratIsValid(this.datedebut, this.datefin)
+  console.log(this.DateValidStartdateAndEnddate);
   return this.rentalService.contratIsValid(this.datedebut, this.datefin);
 
 }
 
-validation(startdatee:any,enddatee:any){
-this.rentalService.contratIsValid(startdatee, enddatee).subscribe((res:any)=>{
-console.log("*******"+res);
-  if(res == true){
+  validation(startdatee:any,enddatee:any){
+  this.rentalService.contratIsValid(startdatee, enddatee).subscribe((res:any)=>{
+  console.log("*******"+res);
+  if (res == true){
     this.DisabledBouton = false;
-}else {
+  }else {
   this.DisabledBouton = true;
-}
+  }
 });
 }
 }

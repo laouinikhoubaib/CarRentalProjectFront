@@ -92,8 +92,8 @@ export class ListeVehiculeFrontComponent implements OnInit {
   }
 
   disponile(data: any) {
-    console.log(data.idvehicule);
-    this.service.getDisponible(data.idvehicule).subscribe(
+    console.log(data.vehiculeId);
+    this.service.getDisponible(data.vehiculeId).subscribe(
         (isAvailable) => {
           if (isAvailable) {
             alert('Le véhicule est disponible');
@@ -131,7 +131,7 @@ export class ListeVehiculeFrontComponent implements OnInit {
   filterA(){
     this.list = this.list.sort(function(a:any, b:any){
       return a.price - b.price
-    })
+    });
   }
 
 

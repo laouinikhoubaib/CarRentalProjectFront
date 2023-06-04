@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import {ReservationServiceService} from '../../shared/reservation-service.service';
 import {Reservation} from '../../models/reservation';
 
+
 @Component({
   selector: 'app-liste-contrat',
   templateUrl: './liste-contrat.component.html',
@@ -22,6 +23,7 @@ export class ListeReservationComponent implements OnInit {
   tableSize: number = 7;
   tableSizes: any = [3, 6, 9, 12];
 
+
   constructor(
     private service: ReservationServiceService,
     private router: Router
@@ -29,12 +31,12 @@ export class ListeReservationComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.getRentalContrat().subscribe(
-      (res) => {
-        this.list = res;
-        console.log(res);
-      }
+        (res) => {
+          this.list = res;
+          console.log(res);
+        }
 
-    )
+    );
   }
   reloadData() {
     this.list = this.service.getRentalContrat();
@@ -43,15 +45,19 @@ export class ListeReservationComponent implements OnInit {
 
 
 
-  deleteContrat = (id: number) => {
-    if (confirm('Êtes-vous sûr de vouloir supprimer ce poste?')) {
-      this.service.deleteContrat(id).subscribe(() => {
-        // Recharge la page après la suppression
-        window.location.reload();
-      });
+  deleteContrat(reservationId: number): void {
+    if (confirm('Êtes-vous sûr de vouloir supprimer cette réservation?')) {
+      this.service.deleteContrat(reservationId).subscribe(
+          () => {
+            window.location.reload();
+          },
+          (error) => {
+            console.log('Erreur lors de la suppression de la réservation :', error);
+          }
+      );
     }
   }
-  
+
 
   onTableDataChange(event: any) {
     this.page = event;
@@ -65,15 +71,15 @@ export class ListeReservationComponent implements OnInit {
 
   update(i: any) {
     console.log('update', i)
-    this.router.navigate(['/UpdateRentalOffer',i.vehiculeId])
+    this.router.navigate(['/UpdateRentalOffer', i.vehiculeId]);
   }
 
-  detail(data:any){
-    console.log(data)
-    const url = 'listeContrat/'+data.vehiculeId
-    this.router.navigateByUrl(url)
+  detail(data: any){
+    console.log(data);
+    const url = 'listeContrat/' + data.vehiculeId;
+    this.router.navigateByUrl(url);
   }
 
- 
+
 
 }

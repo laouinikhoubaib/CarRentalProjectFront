@@ -95,7 +95,7 @@ export class UserService extends  RequestBaseService{
   }
 
   getNomAgence(userId: number): Observable<string> {
-    return this.http.get<string>(`${this.baseUrl}/api/user/${userId}/agence/nom`);
+    return this.http.get<string>(`${this.baseUrl}/api/user/users/${userId}/agence/nom`);
   }
 
 }

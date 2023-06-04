@@ -12,7 +12,6 @@ import {AvatarGroupModule} from 'primeng/avatargroup';
 import {BadgeModule} from 'primeng/badge';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
 import {ButtonModule} from 'primeng/button';
-import {CalendarModule} from 'primeng/calendar';
 import {CardModule} from 'primeng/card';
 import {CarouselModule} from 'primeng/carousel';
 import {CascadeSelectModule} from 'primeng/cascadeselect';
@@ -31,7 +30,6 @@ import {DividerModule} from 'primeng/divider';
 import {DropdownModule} from 'primeng/dropdown';
 import {FieldsetModule} from 'primeng/fieldset';
 import {FileUploadModule} from 'primeng/fileupload';
-import {FullCalendarModule} from 'primeng/fullcalendar';
 import {GalleriaModule} from 'primeng/galleria';
 import {InplaceModule} from 'primeng/inplace';
 import {InputNumberModule} from 'primeng/inputnumber';
@@ -165,7 +163,7 @@ import {ChatComponent} from './forum/chat/chat.component';
 import {ChatPriveComponent} from './forum/chat-prive/chat-prive.component';
 import {PostDetailsComponent} from './forum/post-details/post-details.component';
 import {UserPostsComponent} from './forum/user-posts/user-posts.component';
-import {Ng2SearchPipeModule} from "ng2-search-filter";
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {ListeVehiculeFrontComponent} from './vehicule/liste-vehicule/liste-rental-front.component';
 import {ContratParOffreFrontComponent} from './vehicule/contrat-par-offre-front/contrat-par-offre-front.component';
@@ -177,6 +175,9 @@ import {UpdateVehiculeComponent} from './user/vehiculeBack/update-rental-offer/u
 import {ReservationComponent} from './reservation/rental-contrat.component';
 import {ListeReservationComponent} from './reservation/liste-contrat/liste-contrat.component';
 import {AddReservationComponent} from './reservation/add-rental-contrat/add-rental-contrat.component';
+import {ScheduleModule, DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService} from '@syncfusion/ej2-angular-schedule';
+import { CalendarModule } from '@syncfusion/ej2-angular-calendars';
+import { CalendrierComponent } from './calendrier/calendrier.component';
 
 
 
@@ -213,7 +214,6 @@ import {AddReservationComponent} from './reservation/add-rental-contrat/add-rent
         DropdownModule,
         FieldsetModule,
         FileUploadModule,
-        FullCalendarModule,
         GalleriaModule,
         InplaceModule,
         InputNumberModule,
@@ -270,7 +270,8 @@ import {AddReservationComponent} from './reservation/add-rental-contrat/add-rent
         ReactiveFormsModule,
         NgxPaginationModule,
         Ng2SearchPipeModule,
-        // MatFormFieldModule,
+        ScheduleModule,
+
 
 
     ],
@@ -352,14 +353,16 @@ import {AddReservationComponent} from './reservation/add-rental-contrat/add-rent
         UpdateVehiculeComponent,
         ReservationComponent,
         ListeReservationComponent,
-        AddReservationComponent
+        AddReservationComponent,
+        CalendrierComponent
 
 
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService, BreadcrumbService
+        PhotoService, ProductService, MenuService, BreadcrumbService,
+        DayService, WeekService, WorkWeekService, MonthService
     ],
 
     bootstrap: [AppComponent]

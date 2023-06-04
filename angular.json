@@ -27,9 +27,7 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": [ "./node_modules/@syncfusion/ej2-material-theme/styles/material.css"           ],
             "scripts": [
               "node_modules/prismjs/prism.js",
               "node_modules/prismjs/components/prism-typescript.js"
@@ -76,9 +74,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "diamond-ng:build"
-
           },
-
           "configurations": {
             "production": {
               "browserTarget": "diamond-ng:build:production"
@@ -103,10 +99,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css"
             ],
             "scripts": []
-
           }
         },
         "lint": {

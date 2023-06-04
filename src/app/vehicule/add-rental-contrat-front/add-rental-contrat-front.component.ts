@@ -49,8 +49,6 @@ export class AddVehiculeFrontComponent implements OnInit {
   }
 
 
-
-
     addRentalContrat() {
         this.rentalService.addReservation(this.contract, this.vehiculeId, this.userId)
             .subscribe(
@@ -78,13 +76,13 @@ export class AddVehiculeFrontComponent implements OnInit {
 
 
   disponile(data: any) {
-    console.log(data.idvehicule)
-    this.service.getDisponible(data.offreid).subscribe(res => {
+    console.log(data.idvehicule);
+    this.service.getDisponible(data.idvehicule).subscribe(res => {
       console.log(res)
       alert(res)
     }, err => {
-      alert('error de serveur')
-    })
+      alert('error de serveur');
+    });
   }
 
 }

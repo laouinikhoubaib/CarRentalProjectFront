@@ -39,6 +39,7 @@ import {ListeVehiculesComponent} from './user/vehiculeBack/liste-rental-offer/li
 import {AddReservationComponent} from './reservation/add-rental-contrat/add-rental-contrat.component';
 import {ReservationComponent} from './reservation/rental-contrat.component';
 import {ListeReservationComponent} from './reservation/liste-contrat/liste-contrat.component';
+import {CalendrierComponent} from './calendrier/calendrier.component';
 
 
 
@@ -61,6 +62,7 @@ import {ListeReservationComponent} from './reservation/liste-contrat/liste-contr
                         {path: 'listeReservation/:id/ajout', component: AddReservationComponent },
                         {path: 'listeReservation/:id', component: ReservationComponent },
                         {path: 'listReservation', component: ListeReservationComponent },
+                        {path: 'calendrier', component: CalendrierComponent },
                     ]
                 },
                 {path: 'admin', component: AppMainComponent, canActivate: [AuthGuard], data: {roles: [Role.ADMIN]},

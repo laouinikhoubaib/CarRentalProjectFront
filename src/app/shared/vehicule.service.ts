@@ -44,7 +44,6 @@ export class VehiculeService {
 
   }
 
-
   addVehicule(vehicule: string, file: File, nom: string): Observable<any> { //
     const formData: FormData = new FormData();
     formData.append('vehicule', vehicule);

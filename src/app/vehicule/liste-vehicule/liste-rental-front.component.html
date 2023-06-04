@@ -6,35 +6,6 @@
 <br>
 <br>
 <br>
-<style>
-  .center-text {
-    text-align: center;
-  }
-  .card {
-    background-color: #cfcccc;
-  }
-  .image-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-  }
-  .image-container {
-    position: relative;
-  }
-
-  .image-container:hover .action-buttons {
-    display: flex;
-  }
-
-  .action-buttons {
-    display: none;
-    justify-content: flex-end;
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-  }
-</style>
 
 <div class="container">
   <div class="card">
@@ -48,15 +19,7 @@
         <div class="card-body">
           <div class="image-container">
             <!-- <img src="assets/images/{{ i.picture }}" class="card-img-top" alt="{{ i.title }}"class="my-image"> -->
-            <img style="width: 290px; height: 200px;" src="assets/img/{{ i.picture }}" alt="Image Size 100x100">
-            <div class="action-buttons">
-              <button class="btn btn-dark" (click)="detail(i)">
-                <i class="bi bi-eye-fill"></i> Choisir
-              </button>
-              <button class="btn btn-success" (click)="disponile(i)">
-                Disponibilité
-              </button>
-            </div>
+            <img style="width: 290px; height: 200px; cursor: pointer;" src="assets/img/{{ i.picture }}" alt="Image Size 100x100" (click)="detail(i)">
           </div>
           <h5 class="center-text">{{ i.matricule }}</h5>
           <p class="card-text">{{ i.description }}</p>
